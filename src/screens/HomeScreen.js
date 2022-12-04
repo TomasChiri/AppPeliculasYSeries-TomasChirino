@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 const HomeScreen = ({navigation}) => {
@@ -6,12 +6,12 @@ const HomeScreen = ({navigation}) => {
     <View style={styles.container}>
       <Text style={styles.title}>INICIO</Text>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={() => navigation.navigate("Movies")}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Movies")}>
             <Text style={styles.buttonTitle}>Peliculas</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate("Series")}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Series")}>
             <Text style={styles.buttonTitle}>Series</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -32,13 +32,14 @@ const styles = StyleSheet.create({
     },
     buttonContainer:{
         width: "100%",
-        height: "90%",
+        height: "60%",
         justifyContent: "space-evenly",
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 10
     },
     button:{
         backgroundColor: "#6699CC",
-        height: "35%",
+        height: "30%",
         width: "80%",
         borderRadius: 16,
         justifyContent: "center",

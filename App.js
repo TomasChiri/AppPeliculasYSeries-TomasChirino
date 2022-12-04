@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
-import AppNavigator from './src/navigation/AppNavigator';
+import BottomTabNavigator from './src/navigation/BottomTabNavigator';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -13,7 +12,7 @@ export default function App() {
     return null;
   }
 
-  return <AppNavigator />
+  return <BottomTabNavigator />
 }
 
 const styles = StyleSheet.create({

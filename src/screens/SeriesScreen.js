@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 const SeriesScreen = ({navigation}) => {
@@ -7,9 +7,9 @@ const SeriesScreen = ({navigation}) => {
         <Text style={styles.title}>Series</Text>
         <View style={styles.seriesContainer}>
             <Text>Aca iria una Serie</Text>
-            <Pressable style={styles.button} onPress={() => {navigation.navigate("SeriesDetails")}}>
+            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate("SeriesDetails")}}>
                 <Text style={styles.buttonTitle}>Ir a detalle de Serie</Text>
-            </Pressable>
+            </TouchableOpacity>
         </View>
     </View>
   )

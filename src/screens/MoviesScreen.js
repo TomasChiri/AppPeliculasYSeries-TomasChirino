@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const MoviesScreen = ({navigation}) => {
@@ -7,9 +7,9 @@ const MoviesScreen = ({navigation}) => {
         <Text style={styles.title}>Peliculas</Text>
         <View style={styles.movieContainer}>
             <Text>Aca iria una pelicula</Text>
-            <Pressable style={styles.button} onPress={() => {navigation.navigate("MovieDetails")}}>
+            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate("MovieDetails")}}>
                 <Text style={styles.buttonTitle}>Ir a detalle de Pelicula</Text>
-            </Pressable>
+            </TouchableOpacity>
         </View>
     </View>
   )

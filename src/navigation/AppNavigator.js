@@ -10,14 +10,15 @@ const Stack = createNativeStackNavigator();
 
 export default ShopNavigator = () => {
     return(
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Home" component={HomeScreen}/>
-                <Stack.Screen name="Movies" component={MoviesScreen}/>
+            <Stack.Navigator screenOptions={{
+                headerStyle: {backgroundColor: "#212529"},
+                headerTintColor: "white",
+            }}>
+                <Stack.Screen name="Home" component={HomeScreen} options={{title: "Inicio"}}/>
+                <Stack.Screen name="Movies" component={MoviesScreen} options={{title: "Peliculas"}}/>
                 <Stack.Screen name="MovieDetails" component={MovieDetailsScreen}/>
-                <Stack.Screen name="Series" component={SeriesScreen}/>
+                <Stack.Screen name="Series" component={SeriesScreen} options={{title: "Series"}}/>
                 <Stack.Screen name="SeriesDetails" component={SeriesDetailsScreen}/>
             </Stack.Navigator>
-        </NavigationContainer>
     );
 };
