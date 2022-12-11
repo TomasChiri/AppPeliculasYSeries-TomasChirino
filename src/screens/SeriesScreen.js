@@ -1,21 +1,38 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
 import React from 'react'
+import { SERIES } from '../data/series'
+import ListItem from '../components/ListItem'
+import { useSelector, useDispatch, connect } from 'react-redux';
+import { selectSeries } from '../store/actions/series.action';
 
 const SeriesScreen = ({navigation}) => {
+    const series = useSelector((state) => state.series.series);
+    const dispatch = useDispatch();
+
+    const handleSelectedCategory = (item) => {
+        dispatch(selectSeries(item.id));
+        navigation.navigate("SeriesDetails", {
+            name: item.name,
+        })
+    }
+
+    const renderListItem = ({item}) => (
+        <ListItem item={item} onSelected={handleSelectedCategory}/>
+    )
+
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Series</Text>
-        <View style={styles.seriesContainer}>
-            <Text>Aca iria una Serie</Text>
-            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate("SeriesDetails")}}>
-                <Text style={styles.buttonTitle}>Ir a detalle de Serie</Text>
-            </TouchableOpacity>
-        </View>
+        <FlatList
+        data={series}
+        keyExtractor={(item) => item.id}
+        renderItem={renderListItem}
+        />
     </View>
   )
 }
 
-export default SeriesScreen
+export default connect()(SeriesScreen);
 
 const styles = StyleSheet.create({
     container: {
@@ -28,25 +45,4 @@ const styles = StyleSheet.create({
         fontSize: 40,
         color:"white",
     },
-    seriesContainer:{
-        backgroundColor:"white",
-        height: "20%",
-        width: "60%",
-        padding: 10,
-        alignItems: "center",
-        justifyContent: 'space-between',
-        borderRadius: 12
-    },
-    button:{
-        backgroundColor: "#662d91",
-        height: "35%",
-        width: "80%",
-        borderRadius: 16,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    buttonTitle:{
-        fontFamily: "NotoSerif",
-        color: "white"
-    }
 })

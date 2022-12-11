@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
 import MoviesScreen from "../screens/MoviesScreen";
@@ -16,9 +15,15 @@ export default ShopNavigator = () => {
             }}>
                 <Stack.Screen name="Home" component={HomeScreen} options={{title: "Inicio"}}/>
                 <Stack.Screen name="Movies" component={MoviesScreen} options={{title: "Peliculas"}}/>
-                <Stack.Screen name="MovieDetails" component={MovieDetailsScreen}/>
+                <Stack.Screen name="MovieDetails" component={MovieDetailsScreen} 
+                options={({route}) => ({
+                    title: route.params.name,
+                })}/>
                 <Stack.Screen name="Series" component={SeriesScreen} options={{title: "Series"}}/>
-                <Stack.Screen name="SeriesDetails" component={SeriesDetailsScreen}/>
+                <Stack.Screen name="SeriesDetails" component={SeriesDetailsScreen} 
+                options={({route}) => ({
+                    title: route.params.name,
+                })}/>
             </Stack.Navigator>
     );
 };

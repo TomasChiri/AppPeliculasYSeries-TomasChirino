@@ -1,21 +1,38 @@
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import React from 'react';
+import ListItem from '../components/ListItem';
+import { MOVIES } from '../data/movies';
+import { useSelector, useDispatch, connect } from 'react-redux';
+import { selectMovie } from '../store/actions/movies.action';
 
 const MoviesScreen = ({navigation}) => {
+    const movies = useSelector((state) => state.movies.movies);
+    const dispatch = useDispatch();
+
+    const handleSelectedCategory = (item) => {
+        dispatch(selectMovie(item.id));
+        navigation.navigate("MovieDetails", {
+            name: item.name,
+        })
+    }
+
+    const renderListItem = ({item}) => (
+        <ListItem item={item} onSelected={handleSelectedCategory}/>
+    )
+
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Peliculas</Text>
-        <View style={styles.movieContainer}>
-            <Text>Aca iria una pelicula</Text>
-            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate("MovieDetails")}}>
-                <Text style={styles.buttonTitle}>Ir a detalle de Pelicula</Text>
-            </TouchableOpacity>
-        </View>
+        <FlatList
+        data={movies}
+        keyExtractor={(item) => item.id}
+        renderItem={renderListItem}
+        />
     </View>
   )
 }
 
-export default MoviesScreen
+export default connect()(MoviesScreen);
 
 const styles = StyleSheet.create({
     container: {
@@ -28,25 +45,4 @@ const styles = StyleSheet.create({
         fontSize: 40,
         color:"white",
     },
-    movieContainer:{
-        backgroundColor:"white",
-        height: "20%",
-        width: "60%",
-        padding: 10,
-        alignItems: "center",
-        justifyContent: 'space-between',
-        borderRadius: 12
-    },
-    button:{
-        backgroundColor: "#662d91",
-        height: "35%",
-        width: "80%",
-        borderRadius: 16,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    buttonTitle:{
-        fontFamily: "NotoSerif",
-        color: "white"
-    }
 })

@@ -16,7 +16,8 @@ export default BottomTabNavigator = () => {
             screenOptions={{
                 headerShown: false, 
                 tabBarShowLabel:false, 
-                tabBarStyle: styles.tabBar
+                tabBarStyle: styles.tabBar,
+                tabBarActiveBackgroundColor: "grey"
             }}>
             <BottomTabs.Screen name='ShopTab' component={AppNavigator}  options={{
                 tabBarIcon: ({focus}) => (
